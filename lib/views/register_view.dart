@@ -211,7 +211,8 @@ class _RegisterState extends State<Register> {
           ),
           RaisedButton(
             padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-            onPressed: () => signInButton(),
+            onPressed: () => Navigator.pushReplacementNamed(
+                context, AppRouteGenerator.APP_ROUTE_HOME),
             child: Text(
               'KAYIT OL',
               style: GoogleFonts.montserrat(fontSize: 14),
@@ -240,10 +241,6 @@ class _RegisterState extends State<Register> {
         ],
       ),
     );
-  }
-
-  signInButton() {
-    return true;
   }
 
   List<int> birthdate() {

@@ -1,3 +1,4 @@
+import 'package:eogretmen/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:eogretmen/views/splash_view.dart';
 import 'package:eogretmen/views/login_view.dart';
@@ -32,11 +33,11 @@ class AppRouteGenerator {
           builder: (BuildContext context) => Register(),
         );
 
-      // case APP_ROUTE_HOME:
-      //   return MaterialPageRoute<void>(
-      //     settings: routeSettings,
-      //     builder: (BuildContext context) => Home(),
-      //   );
+      case APP_ROUTE_HOME:
+        return MaterialPageRoute<void>(
+          settings: routeSettings,
+          builder: (BuildContext context) => Home(),
+        );
 
       default:
         return MaterialPageRoute<void>(

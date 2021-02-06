@@ -84,7 +84,8 @@ class _LogInState extends State<LogIn> {
             ),
             RaisedButton(
               padding: EdgeInsets.all(0),
-              onPressed: () => {},
+              onPressed: () => Navigator.pushReplacementNamed(
+                  context, AppRouteGenerator.APP_ROUTE_HOME),
               child: Container(
                 width: size.width,
                 alignment: Alignment.center,

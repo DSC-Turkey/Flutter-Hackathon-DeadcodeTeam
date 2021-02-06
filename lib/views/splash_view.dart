@@ -59,7 +59,7 @@ class _SplashViewState extends State<SplashView>
           if (isLogin == true)
             {
               Navigator.pushReplacementNamed(
-                  context, AppRouteGenerator.APP_ROUTE_LOGIN)
+                  context, AppRouteGenerator.APP_ROUTE_HOME)
             }
           else
             {
