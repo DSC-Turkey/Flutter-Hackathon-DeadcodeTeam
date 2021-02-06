@@ -82,9 +82,7 @@ class _SplashViewState extends State<SplashView>
               Container(
                 width: _logoAnimation.value * 200,
                 height: _logoAnimation.value * 225,
-                child: Image(
-                  image: AssetImage("assets/images/logo.png"),
-                ),
+                child: Image.asset("assets/images/logo.png"),
               ),
               Text(
                 "E-Öğretmen",
