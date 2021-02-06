@@ -1,5 +1,6 @@
-import 'package:eogretmen/app/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:eogretmen/app/routes.dart';
+import 'package:eogretmen/resource/appPreferences.dart';
 
 class App extends StatelessWidget {
   // Singleton Pattern Instance
@@ -17,13 +18,13 @@ class App extends StatelessWidget {
     );
   }
 
-  // Get App Routes
+  // App Routes
   AppRouteGenerator routeGenerator() {
     return AppRouteGenerator();
   }
 
-  // Get App Preferences
-  // AppPreferences getAppPreferences() {
-  //   return AppPreferences();
-  // }
+  // App Preferences
+  AppPreferences getAppPreferences() {
+    return AppPreferences();
+  }
 }
