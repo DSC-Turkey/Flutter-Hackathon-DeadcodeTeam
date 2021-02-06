@@ -1,214 +1,244 @@
 import 'package:flutter/material.dart';
-//import 'package:grouped_buttons/grouped_buttons.dart';
-import '../utilities/themeColors.dart';
-
+import 'package:eogretmen/app/routes.dart';
+import 'package:eogretmen/resource/themeColors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUp extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _RegisterState extends State<Register> {
   TextEditingController txtUserName = new TextEditingController();
   TextEditingController txtPassword = new TextEditingController();
-  String _gender;
-  String _birthdate;
-  String _edu;
-  List<int> selectDate = new List<int>();
+  String _gender, _birthdate, _edu;
+  List<int> selectDate = [];
+
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      backgroundColor: ThemeColors.white,
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 45, vertical: 220),
-        child: signInWidget(),
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: SingleChildScrollView(
+        physics: PageScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        child: signInWidget(context, size),
       ),
-      resizeToAvoidBottomInset: false,
-      resizeToAvoidBottomPadding: false,
     );
   }
 
-  signInWidget() {
+  Widget signInWidget(BuildContext context, Size size) {
     selectDate = birthdate();
-    return Column(
-      children: [
-        Text('KAYIT OL', style: GoogleFonts.montserrat(fontSize: 50)),
-        SizedBox(
-          height: 50,
-        ),
-        TextField(
-          controller: txtUserName,
-          style: GoogleFonts.montserrat(fontSize: 18),
-          decoration: InputDecoration(
-            labelText: "Ad",
-            border: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(50.0),
-              borderSide: new BorderSide(),
-            ),
+
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width * 0.15,
+      ),
+      height: size.height,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: size.height * 0.05,
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        TextField(
-          controller: txtPassword,
-          obscureText: true,
-          style: GoogleFonts.montserrat(fontSize: 18),
-          decoration: InputDecoration(
-            labelText: "Soyad",
-            border: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(50.0),
-              borderSide: new BorderSide(),
-            ),
+          Text(
+            'KAYIT OL',
+            style: GoogleFonts.montserrat(fontSize: 25),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Row(
-          children: [
-            SizedBox(
-              width: 10,
-            ),
-            DropdownButton<String>(
-              value: _gender,
-              hint: Text(
-                'Cinsiyet',
-                style: GoogleFonts.montserrat(fontSize: 22),
+          SizedBox(
+            height: size.height * 0.05,
+          ),
+          TextField(
+            controller: txtUserName,
+            style: GoogleFonts.montserrat(fontSize: 14),
+            decoration: InputDecoration(
+              labelText: "İsim",
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(50.0),
+                borderSide: new BorderSide(),
               ),
-              icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
-              elevation: 16,
-              style: TextStyle(color: Colors.black, fontSize: 22),
-              onChanged: (String newValue) {
-                setState(() {
-                  _gender = newValue;
-                  print(newValue);
-                });
-              },
-              items: <String>['Kadın', 'Erkek']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
             ),
-            SizedBox(
-              width: 10,
-            ),
-            DropdownButton<String>(
-              value: _birthdate,
-              hint: Text(
-                'Doğum Yılı',
-                style: GoogleFonts.montserrat(fontSize: 22),
+          ),
+          SizedBox(
+            height: size.height * 0.025,
+          ),
+          TextField(
+            controller: txtPassword,
+            obscureText: true,
+            style: GoogleFonts.montserrat(fontSize: 14),
+            decoration: InputDecoration(
+              labelText: "Soyisim",
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(50.0),
+                borderSide: new BorderSide(),
               ),
-              icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
-              elevation: 16,
-              style: TextStyle(color: Colors.black, fontSize: 22),
-              onChanged: (String newValue) {
-                setState(() {
-                  _birthdate = newValue;
-                  print(newValue);
-                });
-              },
-              items: selectDate.map<DropdownMenuItem<String>>((int value) {
-                return DropdownMenuItem<String>(
-                  value: value.toString(),
-                  child: Text(value.toString()),
-                );
-              }).toList(),
             ),
-            SizedBox(
-              width: 10,
-            ),
-            DropdownButton<String>(
-              value: _edu,
-              hint: Text(
-                'Eğitim Düzeyi',
-                style: GoogleFonts.montserrat(fontSize: 22),
+          ),
+          SizedBox(
+            height: size.height * 0.025,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DropdownButton<String>(
+                value: _gender,
+                hint: Text(
+                  'Cinsiyet',
+                  style: GoogleFonts.montserrat(fontSize: 14),
+                ),
+                icon: Icon(Icons.arrow_downward),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+                onChanged: (String newValue) {
+                  setState(() {
+                    _gender = newValue;
+                  });
+                },
+                items: <String>['Kadın', 'Erkek']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
-              icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
-              elevation: 16,
-              style: TextStyle(color: Colors.black, fontSize: 25),
-              onChanged: (String newValue) {
-                setState(() {
-                  _edu = newValue;
-                  print(newValue);
-                });
-              },
-              items: <String>['İlkokul', 'Ortaokul', 'Lise', 'Üniversite']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+              DropdownButton<String>(
+                value: _birthdate,
+                hint: Text(
+                  'Doğum Yılı',
+                  style: GoogleFonts.montserrat(fontSize: 14),
+                ),
+                icon: Icon(Icons.arrow_downward),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+                onChanged: (String newValue) {
+                  setState(() {
+                    _birthdate = newValue;
+                  });
+                },
+                items: selectDate.map<DropdownMenuItem<String>>((int value) {
+                  return DropdownMenuItem<String>(
+                    value: value.toString(),
+                    child: Text(value.toString()),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          DropdownButton<String>(
+            value: _edu,
+            hint: Text(
+              'Eğitim Düzeyiniz',
+              style: GoogleFonts.montserrat(fontSize: 14),
             ),
-          ],
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        TextField(
-          controller: txtPassword,
-          obscureText: true,
-          style: GoogleFonts.montserrat(fontSize: 18),
-          decoration: InputDecoration(
-            labelText: "Mail Adresi",
-            border: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(50.0),
-              borderSide: new BorderSide(),
+            icon: Icon(Icons.arrow_downward),
+            iconSize: 24,
+            elevation: 16,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 14,
+            ),
+            onChanged: (String newValue) {
+              setState(() {
+                _edu = newValue;
+              });
+            },
+            items: <String>['İlkokul', 'Ortaokul', 'Lise', 'Üniversite']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+          SizedBox(
+            height: size.height * 0.025,
+          ),
+          TextField(
+            controller: txtPassword,
+            obscureText: true,
+            style: GoogleFonts.montserrat(fontSize: 14),
+            decoration: InputDecoration(
+              labelText: "Mail Adresi",
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(50.0),
+                borderSide: new BorderSide(),
+              ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        TextField(
-          controller: txtPassword,
-          obscureText: true,
-          style: GoogleFonts.montserrat(fontSize: 18),
-          decoration: InputDecoration(
-            labelText: "Şifre",
-            border: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(50.0),
-              borderSide: new BorderSide(),
+          SizedBox(
+            height: size.height * 0.025,
+          ),
+          TextField(
+            controller: txtPassword,
+            obscureText: true,
+            style: GoogleFonts.montserrat(fontSize: 14),
+            decoration: InputDecoration(
+              labelText: "Şifre",
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(50.0),
+                borderSide: new BorderSide(),
+              ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        TextField(
-          controller: txtPassword,
-          obscureText: true,
-          style: GoogleFonts.montserrat(fontSize: 18),
-          decoration: InputDecoration(
-            labelText: "Şifre Tekrarı",
-            border: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(50.0),
-              borderSide: new BorderSide(),
+          SizedBox(
+            height: size.height * 0.025,
+          ),
+          TextField(
+            controller: txtPassword,
+            obscureText: true,
+            style: GoogleFonts.montserrat(fontSize: 14),
+            decoration: InputDecoration(
+              labelText: "Şifre Tekrarı",
+              border: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(50.0),
+                borderSide: new BorderSide(),
+              ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        RaisedButton(
-          padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-          onPressed: () => signInButton(),
-          child: Text('KAYIT OL', style: GoogleFonts.montserrat(fontSize: 23)),
-          textColor: ThemeColors.white,
-          color: Color.fromRGBO(34, 6, 95, 0.6),
-          shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(30.0),
+          SizedBox(
+            height: size.height * 0.025,
           ),
-        ),
-      ],
+          RaisedButton(
+            padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+            onPressed: () => signInButton(),
+            child: Text(
+              'KAYIT OL',
+              style: GoogleFonts.montserrat(fontSize: 14),
+            ),
+            textColor: ThemeColors.WHITE,
+            color: ThemeColors.LIGHT_NAVY_BLUE,
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(30.0),
+            ),
+          ),
+          SizedBox(
+            height: size.height * 0.01,
+          ),
+          FlatButton(
+            onPressed: () => Navigator.pushReplacementNamed(
+                context, AppRouteGenerator.APP_ROUTE_LOGIN),
+            child: Text(
+              'Hesabın varsa giriş yapmak için tıkla',
+              style: GoogleFonts.montserrat(
+                fontSize: 14,
+                color: ThemeColors.GRAY,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -217,7 +247,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   List<int> birthdate() {
-    List<int> selectDate = new List<int>();
+    List<int> selectDate = [];
     for (int i = 1930; i < 2021; i++) {
       selectDate.add(i);
     }

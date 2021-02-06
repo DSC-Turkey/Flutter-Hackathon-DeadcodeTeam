@@ -56,7 +56,7 @@ class _SplashViewState extends State<SplashView>
     await App().getAppPreferences().isPreferencesReady;
     // Navigate next screen
     App().getAppPreferences().getIsLogin().then((isLogin) => {
-          if (isLogin == true)
+          if (isLogin == false)
             {
               Navigator.pushReplacementNamed(
                   context, AppRouteGenerator.APP_ROUTE_LOGIN)
