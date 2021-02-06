@@ -14,6 +14,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController txtPassword = new TextEditingController();
   String _gender;
   String _birthdate;
+  String _edu;
   List<int> selectDate = new List<int>();
   @override
   Widget build(BuildContext context) {
@@ -124,7 +125,7 @@ class _SignUpState extends State<SignUp> {
               width: 10,
             ),
             DropdownButton<String>(
-              value: _gender,
+              value: _edu,
               hint: Text(
                 'Eğitim Düzeyi',
                 style: GoogleFonts.montserrat(fontSize: 22),
@@ -135,7 +136,7 @@ class _SignUpState extends State<SignUp> {
               style: TextStyle(color: Colors.black, fontSize: 25),
               onChanged: (String newValue) {
                 setState(() {
-                  _gender = newValue;
+                  _edu = newValue;
                   print(newValue);
                 });
               },
