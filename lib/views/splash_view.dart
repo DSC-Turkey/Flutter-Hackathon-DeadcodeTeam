@@ -61,6 +61,11 @@ class _SplashViewState extends State<SplashView>
               Navigator.pushReplacementNamed(
                   context, AppRouteGenerator.APP_ROUTE_LOGIN)
             }
+          else
+            {
+              Navigator.pushReplacementNamed(
+                  context, AppRouteGenerator.APP_ROUTE_LOGIN)
+            }
         });
   }
 
@@ -71,18 +76,22 @@ class _SplashViewState extends State<SplashView>
       body: Center(
         child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image(
+              Container(
                 width: _logoAnimation.value * 200,
-                height: _logoAnimation.value * 200,
-                image: AssetImage("assets/images/logo.png"),
+                height: _logoAnimation.value * 225,
+                child: Image(
+                  image: AssetImage("assets/images/logo.png"),
+                ),
               ),
               Text(
                 "E-Öğretmen",
-                style: GoogleFonts.poppins(
-                  fontSize: 15,
+                style: GoogleFonts.kaushanScript(
+                  fontSize: 30,
                   fontWeight: FontWeight.w700,
-                  color: ThemeColors.WHITE,
+                  color: ThemeColors.BLACK,
                 ),
               ),
             ],
