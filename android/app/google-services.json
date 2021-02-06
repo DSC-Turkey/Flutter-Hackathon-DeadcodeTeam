@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "645521703509",
+    "firebase_url": "https://deadcode-hackathon-default-rtdb.firebaseio.com",
+    "project_id": "deadcode-hackathon",
+    "storage_bucket": "deadcode-hackathon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645521703509:android:fecbf78b3b621ec2af8adc",
+        "android_client_info": {
+          "package_name": "com.example.deadcode_hackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645521703509-ebm35t02801uo6aprd1m57erfb1694or.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUo6j82rF-o44NP8y58FT89zU_OFEW0hM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645521703509-ebm35t02801uo6aprd1m57erfb1694or.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
