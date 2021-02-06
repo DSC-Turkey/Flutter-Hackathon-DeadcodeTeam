@@ -1,6 +1,8 @@
+import 'package:eogretmen/state/loginState.dart';
 import 'package:flutter/material.dart';
 import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeColors.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Register extends StatefulWidget {
@@ -9,8 +11,10 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  TextEditingController txtUserName = new TextEditingController();
+  TextEditingController txtfirstname = new TextEditingController();
   TextEditingController txtPassword = new TextEditingController();
+  TextEditingController txtemail = new TextEditingController();
+  TextEditingController txtlastname = new TextEditingController();
   String _gender, _birthdate, _edu;
   List<int> selectDate = [];
 
@@ -30,7 +34,7 @@ class _RegisterState extends State<Register> {
 
   Widget signInWidget(BuildContext context, Size size) {
     selectDate = birthdate();
-
+    final LoginState c = Get.find();
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: size.width * 0.15,
@@ -51,7 +55,7 @@ class _RegisterState extends State<Register> {
             height: size.height * 0.05,
           ),
           TextField(
-            controller: txtUserName,
+            controller: txtfirstname,
             style: GoogleFonts.montserrat(fontSize: 14),
             decoration: InputDecoration(
               labelText: "İsim",
@@ -65,7 +69,7 @@ class _RegisterState extends State<Register> {
             height: size.height * 0.025,
           ),
           TextField(
-            controller: txtPassword,
+            controller: txtlastname,
             obscureText: true,
             style: GoogleFonts.montserrat(fontSize: 14),
             decoration: InputDecoration(
@@ -165,7 +169,7 @@ class _RegisterState extends State<Register> {
             height: size.height * 0.025,
           ),
           TextField(
-            controller: txtPassword,
+            controller: txtemail,
             obscureText: true,
             style: GoogleFonts.montserrat(fontSize: 14),
             decoration: InputDecoration(
@@ -243,7 +247,19 @@ class _RegisterState extends State<Register> {
   }
 
   signInButton() {
-    return true;
+    final LoginState c = Get.find();
+    Map<String, String> veriMapp = {
+      "createdDate": DateTime.now().toString(),
+      "email": txtemail.text,
+      "password": txtPassword.text,
+      "profileImage": "",
+      "userAge": _birthdate,
+      "userFirstName": txtfirstname.text,
+      "UserLastName": txtlastname.text,
+      "UserGender": _gender,
+    };
+
+    c.signUp(veriMapp);
   }
 
   List<int> birthdate() {

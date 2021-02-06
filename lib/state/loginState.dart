@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class LoginState extends GetxController {
   bool userLogin = false;
@@ -25,6 +29,21 @@ class LoginState extends GetxController {
         }
       }
     });
+  }
+
+  signUp(Map map) async {
+    final response = await http.post(
+        "https://deadcode-hackathon-default-rtdb.firebaseio.com/users/.json?auth=0JjzW52KHN3hJNYmFv3qNJ1zVFID8AEWS1ZiUfre",
+        body: json.encode(map));
+
+    switch (response.statusCode) {
+      case HttpStatus.ok:
+        print(response.body);
+        return true;
+
+      default:
+        print("");
+    }
   }
 
   setBasildimi(bool deger) {
