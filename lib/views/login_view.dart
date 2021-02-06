@@ -1,7 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeColors.dart';
-import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 
 class LogIn extends StatefulWidget {
@@ -24,8 +23,6 @@ class _LogInState extends State<LogIn> {
         scrollDirection: Axis.vertical,
         child: signInWidget(context, size),
       ),
-      // resizeToAvoidBottomInset: false,
-      // resizeToAvoidBottomPadding: false,
     );
   }
 
@@ -115,17 +112,6 @@ class _LogInState extends State<LogIn> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.025,
-            ),
-            FlatButton(
-              onPressed: () => {},
-              child: Text(
-                'Şifremi unuttum.',
-                style: GoogleFonts.montserrat(fontSize: 14),
-              ),
-              hoverColor: Colors.white,
-            ),
-            SizedBox(
               height: size.height * 0.05,
             ),
             FlatButton(
@@ -133,10 +119,11 @@ class _LogInState extends State<LogIn> {
                   context, AppRouteGenerator.APP_ROUTE_REGISTER),
               child: Text(
                 'Henüz hesabınız yoksa yeni bir hesap açmak için tıklayınız.',
-                style: GoogleFonts.montserrat(fontSize: 14),
+                style: GoogleFonts.montserrat(
+                  fontSize: 14,
+                ),
                 textAlign: TextAlign.center,
               ),
-              color: ThemeColors.WHITE.withOpacity(0.8),
             ),
           ],
         ),
