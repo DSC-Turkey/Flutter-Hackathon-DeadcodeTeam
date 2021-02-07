@@ -1,5 +1,6 @@
 import 'package:eogretmen/resource/themeColors.dart';
 import 'package:eogretmen/views/home/explorehorizontal_view.dart';
+import 'package:eogretmen/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeStyles.dart';
@@ -91,7 +92,7 @@ class _HomeState extends State<Home> {
       case 0:
         return HomeView();
       case 1:
-        return Text("Profil");
+        return ProfileView();
       default:
         return HomeView();
     }
