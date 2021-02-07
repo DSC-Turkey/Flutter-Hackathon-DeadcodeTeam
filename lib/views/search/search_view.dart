@@ -110,7 +110,7 @@ class _SearchState extends State<Search> {
       ),
       child: new ListTile(
         leading: new Image.asset(
-          './lib/img/2.png',
+          'assets/images/logo.png',
           width: 50,
           height: 50,
         ),
