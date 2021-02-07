@@ -24,8 +24,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
@@ -48,5 +46,9 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
     );
+  }
+
+  test() {
+    return true;
   }
 }
