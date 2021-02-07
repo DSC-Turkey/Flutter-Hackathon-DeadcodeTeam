@@ -11,7 +11,9 @@ class DetailState extends GetxController {
     var databaseReference = FirebaseDatabase.instance.reference();
     databaseReference.child("educations").once().then((DataSnapshot value) {
       if (value != null) {
-        value.value.forEach((k, v) => {print(v[0]['name'])});
+        value.value.forEach((k, v) => {
+              print(v.forEach((a, v) => v.value['name'])),
+            });
 
         update();
       }
