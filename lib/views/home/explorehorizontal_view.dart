@@ -261,7 +261,9 @@ class _ExploreHorizontalViewState extends State<ExploreHorizontalView> {
   Widget tabContainerTemplate(BuildContext context, Size size, String cardLabel,
       String imageUrl, int cardActiveUser) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        // Navigate to detail page
+      },
       child: Container(
         width: 300,
         height: size.height,

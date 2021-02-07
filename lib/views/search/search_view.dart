@@ -19,7 +19,13 @@ class _SearchState extends State<Search> {
   List searchresult = [];
   int isAppBarSearchOpened;
 
-  _SearchListExampleState() {
+  @override
+  void initState() {
+    super.initState();
+    _isSearching = false;
+    isAppBarSearchOpened = isAppBarSearchOpened ?? 2;
+    values();
+
     _controller.addListener(() {
       if (_controller.text.isEmpty) {
         setState(() {
@@ -33,14 +39,6 @@ class _SearchState extends State<Search> {
         });
       }
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _isSearching = false;
-    isAppBarSearchOpened = isAppBarSearchOpened ?? 1;
-    values();
   }
 
   void values() {
@@ -75,58 +73,7 @@ class _SearchState extends State<Search> {
                       itemCount: searchresult.length,
                       itemBuilder: (BuildContext context, int index) {
                         String listData = searchresult[index];
-                        return Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 5,
-                            vertical: 15,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 2,
-                              style: BorderStyle.solid,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                            ),
-                          ),
-                          child: new ListTile(
-                            leading: new Image.asset(
-                              './lib/img/2.png',
-                              width: 50,
-                              height: 50,
-                            ),
-                            title: new Text(
-                              listData.toString(),
-                              style: GoogleFonts.poppins(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            subtitle: new Text(
-                              '100 kişi öğreniyor',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                              ),
-                            ),
-                            trailing: RaisedButton(
-                              child: Text(
-                                'Button',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              onPressed: () => 0,
-                              color: Colors.black,
-                              textColor: Colors.white,
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        );
+                        return createSearchBoxes(context, listData);
                       },
                     )
                   : new ListView.builder(
@@ -134,62 +81,68 @@ class _SearchState extends State<Search> {
                       itemCount: _list.length,
                       itemBuilder: (BuildContext context, int index) {
                         String listData = _list[index];
-                        return Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 5,
-                            vertical: 15,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 2,
-                              style: BorderStyle.solid,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                            ),
-                          ),
-                          child: new ListTile(
-                            leading: new Image.asset(
-                              './lib/img/2.png',
-                              width: 50,
-                              height: 50,
-                            ),
-                            title: new Text(
-                              listData.toString(),
-                              style: GoogleFonts.poppins(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            subtitle: new Text(
-                              '100 kişi öğreniyor',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                              ),
-                            ),
-                            trailing: RaisedButton(
-                              child: Text(
-                                'Button',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              onPressed: () => 0,
-                              color: Colors.black,
-                              textColor: Colors.white,
-                              shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        );
+                        return createSearchBoxes(context, listData);
                       },
                     ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget createSearchBoxes(BuildContext context, String boxTitle) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 5,
+        vertical: 15,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: ThemeColors.WHITE,
+          width: 2,
+          style: BorderStyle.solid,
+        ),
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(20),
+          topLeft: Radius.circular(20),
+        ),
+      ),
+      child: new ListTile(
+        leading: new Image.asset(
+          './lib/img/2.png',
+          width: 50,
+          height: 50,
+        ),
+        title: new Text(
+          boxTitle,
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: new Text(
+          '100 kişi öğreniyor',
+          style: GoogleFonts.poppins(
+            fontSize: 14,
+          ),
+        ),
+        trailing: RaisedButton(
+          child: Text(
+            'Başla',
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          onPressed: () {
+            // Navigate to detail page
+          },
+          color: ThemeColors.BLACK,
+          textColor: ThemeColors.WHITE,
+          shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+          ),
         ),
       ),
     );
@@ -200,13 +153,13 @@ class _SearchState extends State<Search> {
       return new TextField(
         controller: _controller,
         style: new TextStyle(
-          color: Colors.black,
+          color: ThemeColors.BLACK,
         ),
         decoration: new InputDecoration(
-          prefixIcon: new Icon(Icons.search, color: Colors.black),
+          prefixIcon: new Icon(Icons.search, color: ThemeColors.BLACK),
           hintText: "Arama Yap...",
           border: InputBorder.none,
-          hintStyle: new TextStyle(color: Colors.black),
+          hintStyle: new TextStyle(color: ThemeColors.BLACK),
         ),
         onChanged: searchOperation,
       );
@@ -219,7 +172,7 @@ class _SearchState extends State<Search> {
             new IconButton(
               icon: Icon(
                 Icons.arrow_back_ios_outlined,
-                color: Colors.black,
+                color: ThemeColors.BLACK,
               ),
               onPressed: () {
                 Navigator.pushReplacementNamed(
@@ -243,7 +196,7 @@ class _SearchState extends State<Search> {
 
   Icon icon = new Icon(
     Icons.search,
-    color: Colors.black,
+    color: ThemeColors.BLACK,
   );
 
   Widget buildAppBar(BuildContext context) {
@@ -251,7 +204,7 @@ class _SearchState extends State<Search> {
       toolbarHeight: 80,
       centerTitle: true,
       title: createAppBarTitle(context, isAppBarSearchOpened),
-      backgroundColor: Color(0xffF5F5F7),
+      backgroundColor: ThemeColors.LIGHT_GRAY,
       actions: <Widget>[
         new IconButton(
           icon: icon,
@@ -260,7 +213,7 @@ class _SearchState extends State<Search> {
               if (this.icon.icon == Icons.search) {
                 this.icon = new Icon(
                   Icons.close,
-                  color: Colors.black,
+                  color: ThemeColors.BLACK,
                 );
                 isAppBarSearchOpened = 1;
                 _handleSearchStart();
@@ -285,7 +238,7 @@ class _SearchState extends State<Search> {
     setState(() {
       this.icon = new Icon(
         Icons.search,
-        color: Colors.black,
+        color: ThemeColors.BLACK,
       );
       isAppBarSearchOpened = 2;
       _isSearching = false;
