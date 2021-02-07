@@ -1,5 +1,6 @@
 import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeColors.dart';
+import 'package:eogretmen/state/detailsState.dart';
 import 'package:eogretmen/state/loginState.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -123,10 +124,9 @@ class Sign extends StatelessWidget {
   }
 
   signInButton(email, passwordd, context) {
-    final LoginState c = Get.find();
-    if (c.basildimi == false) {
-      c.login(email, passwordd);
-      if (c.userLogin == true) {}
-    }
+    final DetailState c = Get.put(DetailState());
+
+    c.veriGetir("abc");
+    Navigator.pushReplacementNamed(context, AppRouteGenerator.APP_ROUTE_DETAIL);
   }
 }

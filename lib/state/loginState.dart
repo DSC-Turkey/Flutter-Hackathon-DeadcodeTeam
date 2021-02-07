@@ -1,6 +1,9 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eogretmen/resource/sharedprefs.dart';
 import 'package:eogretmen/state/detailsState.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -10,34 +13,30 @@ import 'package:http/http.dart' as http;
 class LoginState extends GetxController {
   bool userLogin = false;
   bool basildimi = false;
-  login(email, passwordd) async {
-    final DetailState c = Get.put(DetailState());
-    setBasildimi(true);
-    var databaseReference = FirebaseDatabase.instance.reference();
-    databaseReference
-        .child("users")
-        .orderByChild("email")
-        .equalTo(email)
-        .once()
-        .then((value) async {
-      if (value != null) {
-        setBasildimi(false);
-        var password;
+  String girisisim, giriseposta, girisresim, girisId, girisloginId;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  girisYap(email, sifre) async {
+    UserCredential _user =
+        await _auth.signInWithEmailAndPassword(email: email, password: sifre);
+    SharedPrefs.saveMail(email);
+    SharedPrefs.saveloginId(_user.user.uid);
 
-        value.value.forEach((k, v) => {password = v['password']});
+    SharedPrefs.saveName(girisisim);
+    SharedPrefs.saveId(_user.user.uid);
 
-        if (password == passwordd) {
-          setBasildimi(false);
+    SharedPrefs.login();
+    profilresmiGetir(email);
 
-          await c.detaildata();
+    return true;
+  }
 
-          userLogin = true;
-        } else {
-          setBasildimi(false);
-          Get.snackbar("Hata", "Şifreniz yanlış");
-        }
-      }
-    });
+  profilresmiGetir(email) async {
+    final result = await FirebaseFirestore.instance
+        .collection('users')
+        .where("email", isEqualTo: email)
+        .get();
+    girisresim = result.docs[0]['profilResim'].toString();
+    SharedPrefs.savePhoto(girisresim);
   }
 
   signUp(Map map) async {

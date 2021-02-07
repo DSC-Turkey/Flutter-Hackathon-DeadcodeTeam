@@ -26,31 +26,23 @@ class Details extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           ClipRRect(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(16),
-                                topLeft: Radius.circular(16)),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(16),
+                                  topLeft: Radius.circular(16)),
+                              child: Image.network(c.data[0]['imageUrl'])),
+                          SizedBox(
+                            height: 16,
                           ),
                           SizedBox(
                             height: 16,
                           ),
-                          text(c.data[0], fontSize: textSizeNormal),
+                          text(c.data[0]['name'], fontSize: textSizeNormal),
                           SizedBox(
                             height: 8,
                           ),
                           SizedBox(
                             height: 16,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              LearnerOptionDescription(
-                                  "learner_lbl_1_6k", " learner_lbl_students"),
-                              LearnerOptionDescription(
-                                  " learner_lbl_5_0", "learner_lbl_rating"),
-                              LearnerOptionDescription(
-                                  "learner_lbl_37", "learner_lbl_lectures"),
-                            ],
-                          )
                         ],
                       ),
                     ),
@@ -81,7 +73,7 @@ class Details extends StatelessWidget {
                           size: 20,
                         )),
                     text(
-                      "learner_lbl_project_management",
+                      c.data[0]['name'],
                       fontSize: textSizeNormal,
                     ),
                     SizedBox(
@@ -100,7 +92,7 @@ class Details extends StatelessWidget {
                               SizedBox(
                                 width: 16,
                               ),
-                              text("learner_lbl_hannah_tran",
+                              text("E-öğretmen",
                                   textColor: learner_colorPrimary)
                             ],
                           ),
@@ -120,7 +112,7 @@ class Details extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                    text: " learner_lbl_5_0",
+                                    text: "5.0",
                                     style: TextStyle(
                                       fontSize: textSizeMedium,
                                       color: learner_yellow,
@@ -139,7 +131,9 @@ class Details extends StatelessWidget {
                         itemCount: c.data.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return LearnerQuestion();
+                          return LearnerQuestion(
+                            index: index,
+                          );
                         }),
                     Container()
                   ],
@@ -152,35 +146,40 @@ class Details extends StatelessWidget {
 }
 
 class LearnerQuestion extends StatelessWidget {
+  int index;
+
+  LearnerQuestion({this.index});
   var i;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
-      child: Row(
-        children: <Widget>[
-          text("1", textColor: learner_textColorSecondary),
-          SizedBox(
-            width: 16,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    final DetailState c = Get.find();
+    return ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: c.data.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+            child: Row(
               children: <Widget>[
-                text("model.name",
-                    fontSize: textSizeLargeMedium,
-                    maxLine: 2,
-                    isLongText: true),
-                text("model.subtitle", isLongText: true, maxLine: 2),
-                text("model.typ", textColor: learner_colorPrimary)
+                text(index.toString(), textColor: learner_textColorSecondary),
+                SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      text(c.data[index]['content'], maxLine: 2),
+                    ],
+                  ),
+                )
               ],
             ),
-          )
-        ],
-      ),
-    );
+          );
+        });
   }
 }
 

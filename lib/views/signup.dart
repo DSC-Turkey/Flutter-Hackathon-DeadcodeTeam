@@ -1,3 +1,4 @@
+import 'package:eogretmen/state/detailsState.dart';
 import 'package:eogretmen/state/loginState.dart';
 import 'package:flutter/material.dart';
 import 'package:eogretmen/app/routes.dart';
@@ -247,7 +248,8 @@ class _RegisterState extends State<Register> {
   }
 
   signInButton() {
-    final LoginState c = Get.find();
+    final DetailState c = Get.put(DetailState());
+
     Map<String, String> veriMapp = {
       "createdDate": DateTime.now().toString(),
       "email": txtemail.text,
@@ -259,7 +261,7 @@ class _RegisterState extends State<Register> {
       "UserGender": _gender,
     };
 
-    c.signUp(veriMapp);
+    c.veriGetir("abc");
   }
 
   List<int> birthdate() {
