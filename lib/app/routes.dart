@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:eogretmen/views/search/search_view.dart';
 import 'package:eogretmen/views/home/home_view.dart';
 import 'package:eogretmen/views/splash/splash_view.dart';
 import 'package:eogretmen/views/auth/login_view.dart';
@@ -8,6 +9,7 @@ class AppRouteGenerator {
   static const String APP_ROUTE_SPLASH = "/Splash";
   static const String APP_ROUTE_LOGIN = "/LogIn";
   static const String APP_ROUTE_REGISTER = "/Register";
+  static const String APP_ROUTE_SEARCH = "/Search";
   static const String APP_ROUTE_HOME = "/Home";
 
   Route getAppRoutes(RouteSettings routeSettings) {
@@ -37,6 +39,12 @@ class AppRouteGenerator {
         return MaterialPageRoute<void>(
           settings: routeSettings,
           builder: (BuildContext context) => Home(),
+        );
+
+      case APP_ROUTE_SEARCH:
+        return MaterialPageRoute<void>(
+          settings: routeSettings,
+          builder: (BuildContext context) => Search(),
         );
 
       default:

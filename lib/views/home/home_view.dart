@@ -38,7 +38,8 @@ class _HomeState extends State<Home> {
         body: renderScreens(context),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Search screen navigate
+            Navigator.pushReplacementNamed(
+                context, AppRouteGenerator.APP_ROUTE_SEARCH);
           },
           child: Icon(Icons.search),
           backgroundColor: ThemeColors.DARK_PURPLE,
