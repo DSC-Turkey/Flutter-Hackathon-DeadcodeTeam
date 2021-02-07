@@ -1,3 +1,4 @@
+import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeColors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -254,7 +255,21 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                 ],
               ),
-            )
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              padding: EdgeInsets.only(top: 10, right: 10),
+              child: GestureDetector(
+                onTap: () {
+                  AlertDialog(
+                    title: Text("Başarıyla Çıkış Yaptınız"),
+                  );
+                  Navigator.pushReplacementNamed(
+                      context, AppRouteGenerator.APP_ROUTE_LOGIN);
+                },
+                child: Text('Çıkış Yap'),
+              ),
+            ),
           ],
         ),
       ),
