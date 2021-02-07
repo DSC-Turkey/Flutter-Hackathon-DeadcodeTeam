@@ -1,6 +1,8 @@
+import 'package:eogretmen/state/loginState.dart';
 import 'package:flutter/material.dart';
 import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeColors.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LogIn extends StatefulWidget {
@@ -15,6 +17,7 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final state = Get.put(LoginState());
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -27,6 +30,7 @@ class _LogInState extends State<LogIn> {
   }
 
   Widget signInWidget(BuildContext context, Size size) {
+    final LoginState state = Get.find();
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: size.width * 0.15,
@@ -84,8 +88,9 @@ class _LogInState extends State<LogIn> {
             ),
             RaisedButton(
               padding: EdgeInsets.all(0),
-              onPressed: () => Navigator.pushReplacementNamed(
-                  context, AppRouteGenerator.APP_ROUTE_HOME),
+              onPressed: () => {
+                state.girisYap(txtUserName, txtPassword, context),
+              },
               child: Container(
                 width: size.width,
                 alignment: Alignment.center,

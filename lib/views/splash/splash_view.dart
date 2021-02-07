@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:eogretmen/state/detailsState.dart';
 import 'package:flutter/material.dart';
 
 import 'package:eogretmen/app/app.dart';
 import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeColors.dart';
 import 'package:eogretmen/resource/themeStyles.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Splash extends StatelessWidget {
@@ -52,6 +54,8 @@ class _SplashViewState extends State<SplashView>
   }
 
   void handleAnimationTimeout() async {
+    final DetailState state = Get.put(DetailState());
+
     // Waiting app preferences to be ready.
     await App().getAppPreferences().isPreferencesReady;
     // Navigate next screen
