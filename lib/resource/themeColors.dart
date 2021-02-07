@@ -4,10 +4,7 @@ class ThemeColors {
   static const Color WHITE = Color(0xffFFFFFF);
   static const Color BLACK = Color(0xff000000);
   static const Color GRAY = Color(0xff757575);
-<<<<<<< HEAD
   static const Color LIGHT_GRAY = Color(0xffF5F5F7);
-=======
->>>>>>> burkay
 
   static const Color LIGHT_BLUE = Color(0xff93A7E1);
   static const Color LIGHT_NAVY_BLUE = Color(0xff3c435e);
