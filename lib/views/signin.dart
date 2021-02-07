@@ -16,7 +16,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: ThemeColors.white,
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 60, vertical: 200),
+        padding: EdgeInsets.symmetric(horizontal: 60, vertical: 0),
         child: signInWidget(),
       ),
       resizeToAvoidBottomInset: false,

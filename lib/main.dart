@@ -1,6 +1,5 @@
-import 'package:deadcode_hackathon/views/signup.dart';
+import 'package:deadcode_hackathon/views/search.dart';
 import 'package:flutter/material.dart';
-import './views/signin.dart';
 //import './utilities/themeColors.dart';
 
 void main() => runApp(App());
@@ -18,7 +17,7 @@ class _AppState extends State<App> {
       theme: ThemeData(
         fontFamily: 'Helvetica',
       ),
-      home: SignUp(),
+      home: Search(),
     );
   }
 }
