@@ -15,6 +15,7 @@ class _SearchListExampleState extends State<Search> {
   final TextEditingController _controller = new TextEditingController();
   List<dynamic> _list;
   bool _isSearching;
+  // ignore: unused_field
   String _searchText = "";
   List searchresult = new List();
 
