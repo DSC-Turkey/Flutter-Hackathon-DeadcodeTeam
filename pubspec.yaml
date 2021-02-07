@@ -23,7 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  bubble_bottom_bar: ^1.2.0
   cupertino_icons: any
   firebase_auth: ^0.20.0+1
   firebase_core: ^0.7.0
@@ -31,6 +30,7 @@ dependencies:
   flutter_svg: ^0.19.2+1
   get: ^3.24.0
   google_fonts: ^1.1.2
+  google_nav_bar: ^4.0.2
   http: ^0.12.2
   shared_preferences: ^0.5.12+4
   smooth_page_indicator: ^0.2.0
