@@ -1,6 +1,8 @@
+import 'package:eogretmen/views/home/explorehorizontal_view.dart';
+import 'package:flutter/material.dart';
 import 'package:eogretmen/app/routes.dart';
 import 'package:eogretmen/resource/themeStyles.dart';
-import 'package:flutter/material.dart';
+import 'package:eogretmen/views/home/header_view.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -28,9 +30,21 @@ class _HomeViewState extends State<HomeView> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: SingleChildScrollView(
         physics: PageScrollPhysics(),
+        padding: EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: 20,
+        ),
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [],
+        child: SafeArea(
+          top: true,
+          left: true,
+          right: true,
+          child: Column(
+            children: [
+              HeaderView(userFirstName: "Oğuzhan"),
+              ExploreHorizontalView(),
+            ],
+          ),
         ),
       ),
     );
