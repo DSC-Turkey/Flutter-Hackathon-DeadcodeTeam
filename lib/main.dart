@@ -1,4 +1,4 @@
-import 'package:deadcode_hackathon/views/home.dart';
+import 'package:deadcode_hackathon/views/profile.dart';
 import 'package:flutter/material.dart';
 //import './utilities/themeColors.dart';
 
@@ -17,7 +17,7 @@ class _AppState extends State<App> {
       theme: ThemeData(
         fontFamily: 'Helvetica',
       ),
-      home: HomeScreen(),
+      home: Profile(),
     );
   }
 }
