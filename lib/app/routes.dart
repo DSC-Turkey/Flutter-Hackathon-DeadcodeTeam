@@ -1,8 +1,8 @@
-import 'package:eogretmen/views/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:eogretmen/views/splash_view.dart';
-import 'package:eogretmen/views/login_view.dart';
-import 'package:eogretmen/views/register_view.dart';
+import 'package:eogretmen/views/home/home_view.dart';
+import 'package:eogretmen/views/splash/splash_view.dart';
+import 'package:eogretmen/views/auth/login_view.dart';
+import 'package:eogretmen/views/auth/register_view.dart';
 
 class AppRouteGenerator {
   static const String APP_ROUTE_SPLASH = "/Splash";

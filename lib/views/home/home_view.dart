@@ -22,9 +22,16 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: Center(
-        child: Text("Ana Sayfa"),
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: SingleChildScrollView(
+        physics: PageScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [],
+        ),
       ),
     );
   }
