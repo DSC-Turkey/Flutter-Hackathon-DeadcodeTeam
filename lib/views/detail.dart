@@ -5,7 +5,22 @@ import 'package:eogretmen/state/detailsState.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
+  @override
+  _DetailsState createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.addListener(onScroll);
+    _controller = YoutubePlayerController(
+        initialVideoId: YoutubePlayer.convertUrlToId(videoUrl));
+    _turkiye();
+  }
+
   @override
   Widget build(BuildContext context) {
     final DetailState c = Get.put(DetailState());
@@ -154,46 +169,25 @@ class LearnerQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DetailState c = Get.find();
-    return ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: c.data.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
-            child: Row(
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+      child: Row(
+        children: <Widget>[
+          text(index.toString(), textColor: learner_textColorSecondary),
+          SizedBox(
+            width: 16,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                text(index.toString(), textColor: learner_textColorSecondary),
-                SizedBox(
-                  width: 16,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      text(c.data[index]['content'], maxLine: 2),
-                    ],
-                  ),
-                )
+                text(c.data[index]['content'], maxLine: 2),
               ],
             ),
-          );
-        });
+          )
+        ],
+      ),
+    );
   }
-}
-
-Widget LearnerOptionDescription(var total, var type) {
-  return Container(
-    margin: EdgeInsets.only(left: 16, right: 16),
-    child: Column(
-      children: <Widget>[
-        SizedBox(
-          height: 4,
-        ),
-        Text("total, fontFamily: fontMedium, isLongText: true"),
-        text(type, textColor: learner_textColorSecondary),
-      ],
-    ),
-  );
 }

@@ -232,7 +232,7 @@ class _RegisterState extends State<Register> {
           ),
           FlatButton(
             onPressed: () => Navigator.pushReplacementNamed(
-                context, AppRouteGenerator.APP_ROUTE_LOGIN),
+                context, AppRouteGenerator.APP_ROUTE_REGISTER),
             child: Text(
               'Hesabın varsa giriş yapmak için tıkla',
               style: GoogleFonts.montserrat(

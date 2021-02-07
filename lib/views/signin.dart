@@ -110,7 +110,8 @@ class Sign extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () => {
-                Navigator.pushNamed(context, AppRouteGenerator.APP_ROUTE_SIGNUP)
+                Navigator.pushNamed(
+                    context, AppRouteGenerator.APP_ROUTE_REGISTER)
               },
               child: Text(
                 'Henüz hesabınız yoksa yeni bir hesap açmak için tıklayınız.',
