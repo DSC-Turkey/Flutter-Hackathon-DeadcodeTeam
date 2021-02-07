@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:eogretmen/widgets/main_app_widget.dart';
 import 'package:eogretmen/views/search/search_view.dart';
-import 'package:eogretmen/views/home/home_view.dart';
 import 'package:eogretmen/views/splash/splash_view.dart';
 import 'package:eogretmen/views/auth/login_view.dart';
 import 'package:eogretmen/views/auth/register_view.dart';
@@ -38,7 +38,7 @@ class AppRouteGenerator {
       case APP_ROUTE_HOME:
         return MaterialPageRoute<void>(
           settings: routeSettings,
-          builder: (BuildContext context) => Home(),
+          builder: (BuildContext context) => MainApp(),
         );
 
       case APP_ROUTE_SEARCH:

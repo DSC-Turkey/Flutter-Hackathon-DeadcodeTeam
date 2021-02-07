@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:eogretmen/resource/themeColors.dart';
-import 'package:eogretmen/widgets/custom_rectangle_tab_indicator.dart';
+import 'package:eogretmen/widgets/custom_rectangle_tab_indicator_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ExploreHorizontalView extends StatefulWidget {
