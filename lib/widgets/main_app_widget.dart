@@ -73,12 +73,12 @@ class _MainAppState extends State<MainApp> {
                   GButton(
                     icon: Icons.home,
                     backgroundColor: ThemeColors.YELLOW.withOpacity(0.5),
-                    text: 'Home',
+                    text: 'Ana Sayfa',
                   ),
                   GButton(
                     icon: Icons.person,
                     backgroundColor: ThemeColors.GRAY.withOpacity(0.5),
-                    text: 'Profile',
+                    text: 'Profil',
                   ),
                 ],
                 selectedIndex: currentIndex,

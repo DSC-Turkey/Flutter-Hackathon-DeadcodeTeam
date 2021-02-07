@@ -1,3 +1,4 @@
+import 'package:eogretmen/views/home/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:eogretmen/widgets/main_app_widget.dart';
 import 'package:eogretmen/views/search/search_view.dart';
@@ -11,6 +12,7 @@ class AppRouteGenerator {
   static const String APP_ROUTE_REGISTER = "/Register";
   static const String APP_ROUTE_SEARCH = "/Search";
   static const String APP_ROUTE_HOME = "/Home";
+  static const String APP_ROUTE_DETAIL = "/Details";
 
   Route getAppRoutes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -26,6 +28,13 @@ class AppRouteGenerator {
           fullscreenDialog: true,
           settings: routeSettings,
           builder: (BuildContext context) => LogIn(),
+        );
+
+      case APP_ROUTE_DETAIL:
+        return MaterialPageRoute<void>(
+          fullscreenDialog: true,
+          settings: routeSettings,
+          builder: (BuildContext context) => Details(),
         );
 
       case APP_ROUTE_REGISTER:

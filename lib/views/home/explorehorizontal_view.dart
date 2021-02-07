@@ -1,8 +1,11 @@
 import 'dart:ui';
 
+import 'package:eogretmen/app/routes.dart';
+import 'package:eogretmen/state/detailsState.dart';
 import 'package:flutter/material.dart';
 import 'package:eogretmen/resource/themeColors.dart';
 import 'package:eogretmen/widgets/custom_rectangle_tab_indicator_widget.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ExploreHorizontalView extends StatefulWidget {
@@ -17,7 +20,8 @@ class _ExploreHorizontalViewState extends State<ExploreHorizontalView> {
   @override
   void initState() {
     super.initState();
-
+    DetailState c = Get.find();
+    c.veriGetir("abc", "maths");
     tappedIndex = tappedIndex ?? 0;
   }
 
@@ -26,32 +30,33 @@ class _ExploreHorizontalViewState extends State<ExploreHorizontalView> {
     final Size size = MediaQuery.of(context).size;
     currentTabContent = renderTabContent(context);
 
-    return Container(
-      margin: EdgeInsets.only(
-        left: size.width * 0.02,
-        top: size.width * 0.08,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          customTabIndicator(context, size),
-          Container(
-            height: 200,
-            child: ListView(
-              shrinkWrap: true,
-              physics: BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              children: [
-                currentTabContent != null
-                    ? currentTabContent
-                    : Text('Yükleniyor..'),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+    return GetBuilder<DetailState>(
+        builder: (_) => Container(
+              margin: EdgeInsets.only(
+                left: size.width * 0.02,
+                top: size.width * 0.08,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  customTabIndicator(context, size),
+                  Container(
+                    height: 200,
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        currentTabContent != null
+                            ? currentTabContent
+                            : Text('Yükleniyor..'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ));
   }
 
   Widget customTabIndicator(BuildContext context, Size size) {
@@ -93,12 +98,12 @@ class _ExploreHorizontalViewState extends State<ExploreHorizontalView> {
           tabs: [
             Tab(
               child: Container(
-                child: Text('Kategoriler'),
+                child: Text('Alfabe Dersleri'),
               ),
             ),
             Tab(
               child: Container(
-                child: Text('Önerilen'),
+                child: Text('Matematik'),
               ),
             ),
             Tab(
@@ -118,103 +123,67 @@ class _ExploreHorizontalViewState extends State<ExploreHorizontalView> {
   }
 
   Widget renderTabContent(BuildContext context) {
+    DetailState c = Get.put(DetailState());
     final Size size = MediaQuery.of(context).size;
 
     switch (tappedIndex) {
       case 0:
-        return Row(
-          children: [
-            tabContainerTemplate(
-              context,
-              size,
-              "Kategoriler card 1",
-              "https://i.ytimg.com/vi/_UR-l3QI2nE/maxresdefault.jpg",
-              12,
-            ),
-            tabContainerTemplate(
-              context,
-              size,
-              "Kategoriler card 2",
-              "https://i.ytimg.com/vi/_UR-l3QI2nE/maxresdefault.jpg",
-              12,
-            ),
-            tabContainerTemplate(
-              context,
-              size,
-              "Kategoriler card 3",
-              "https://i.ytimg.com/vi/_UR-l3QI2nE/maxresdefault.jpg",
-              12,
-            ),
-            tabContainerTemplate(
-              context,
-              size,
-              "Kategoriler card 4",
-              "https://i.ytimg.com/vi/_UR-l3QI2nE/maxresdefault.jpg",
-              12,
-            ),
-          ],
-        );
+        return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: c.data.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return tabContainerTemplate(
+                context,
+                size,
+                c.data[index]['content'],
+                c.data[index]['imageUrl'],
+                12,
+              );
+            });
+
       case 1:
-        return Row(
-          children: [
-            tabContainerTemplate(
-              context,
-              size,
-              "Önerilen card 1",
-              "https://newcrownedhope.org/wp-content/uploads/2020/10/education_g7zr.jpg",
-              54,
-            ),
-            tabContainerTemplate(
-              context,
-              size,
-              "Önerilen card 2",
-              "https://newcrownedhope.org/wp-content/uploads/2020/10/education_g7zr.jpg",
-              43,
-            ),
-            tabContainerTemplate(
-              context,
-              size,
-              "Önerilen card 3",
-              "https://newcrownedhope.org/wp-content/uploads/2020/10/education_g7zr.jpg",
-              32,
-            ),
-            tabContainerTemplate(
-              context,
-              size,
-              "Önerilen card 4",
-              "https://newcrownedhope.org/wp-content/uploads/2020/10/education_g7zr.jpg",
-              12,
-            ),
-          ],
-        );
+        return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: c.data2.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return tabContainerTemplate(
+                context,
+                size,
+                c.data2[index]['content'],
+                c.data2[index]['imageUrl'],
+                12,
+              );
+            });
       case 2:
         return Row(
           children: [
             tabContainerTemplate(
               context,
               size,
-              "Her Yaşa Göre card 1",
+              "ÇOK YAKINDA",
               "https://rightsagenda.org/wp-content/uploads/2019/01/guide-moving-abroad-education-netherlands.jpg",
               23,
             ),
             tabContainerTemplate(
               context,
               size,
-              "Her Yaşa Göre card 2",
+              "ÇOK YAKINDA",
               "https://rightsagenda.org/wp-content/uploads/2019/01/guide-moving-abroad-education-netherlands.jpg",
               34,
             ),
             tabContainerTemplate(
               context,
               size,
-              "Her Yaşa Göre card 3",
+              "ÇOK YAKINDA",
               "https://rightsagenda.org/wp-content/uploads/2019/01/guide-moving-abroad-education-netherlands.jpg",
               32,
             ),
             tabContainerTemplate(
               context,
               size,
-              "Her Yaşa Göre card 4",
+              "ÇOK YAKINDA",
               "https://rightsagenda.org/wp-content/uploads/2019/01/guide-moving-abroad-education-netherlands.jpg",
               54,
             ),
@@ -226,29 +195,29 @@ class _ExploreHorizontalViewState extends State<ExploreHorizontalView> {
             tabContainerTemplate(
               context,
               size,
-              "Okuryazarlık Gelişimi card 1",
-              "https://lh3.googleusercontent.com/proxy/zqxxv0pyMSlSdknNor74DcgWV73IBKqdhSxztx1sD2JbJ3_9ABK7LFVUyYckS6ILwi7C7jtiq1JOpdxiuc00NWPKL25YJmXyFoWgZuHYbDrosoaK2Fj1MxlZcXnrHpf_TCUvS007",
+              "ÇOK YAKINDA",
+              "https://us.123rf.com/450wm/vladwel/vladwel1805/vladwel180500030/101657415-writer-writing-on-computer-paper-sheet-vector-illustration-flat-cartoon-person-editor-write-electron.jpg?ver=6",
               54,
             ),
             tabContainerTemplate(
               context,
               size,
-              "Okuryazarlık Gelişimi card 2",
-              "https://lh3.googleusercontent.com/proxy/zqxxv0pyMSlSdknNor74DcgWV73IBKqdhSxztx1sD2JbJ3_9ABK7LFVUyYckS6ILwi7C7jtiq1JOpdxiuc00NWPKL25YJmXyFoWgZuHYbDrosoaK2Fj1MxlZcXnrHpf_TCUvS007",
+              "ÇOK YAKINDA",
+              "https://us.123rf.com/450wm/vladwel/vladwel1805/vladwel180500030/101657415-writer-writing-on-computer-paper-sheet-vector-illustration-flat-cartoon-person-editor-write-electron.jpg?ver=6",
               23,
             ),
             tabContainerTemplate(
               context,
               size,
-              "Okuryazarlık Gelişimi card 3",
-              "https://lh3.googleusercontent.com/proxy/zqxxv0pyMSlSdknNor74DcgWV73IBKqdhSxztx1sD2JbJ3_9ABK7LFVUyYckS6ILwi7C7jtiq1JOpdxiuc00NWPKL25YJmXyFoWgZuHYbDrosoaK2Fj1MxlZcXnrHpf_TCUvS007",
+              "ÇOK YAKINDA",
+              "https://us.123rf.com/450wm/vladwel/vladwel1805/vladwel180500030/101657415-writer-writing-on-computer-paper-sheet-vector-illustration-flat-cartoon-person-editor-write-electron.jpg?ver=6",
               34,
             ),
             tabContainerTemplate(
               context,
               size,
-              "Okuryazarlık Gelişimi card 4",
-              "https://lh3.googleusercontent.com/proxy/zqxxv0pyMSlSdknNor74DcgWV73IBKqdhSxztx1sD2JbJ3_9ABK7LFVUyYckS6ILwi7C7jtiq1JOpdxiuc00NWPKL25YJmXyFoWgZuHYbDrosoaK2Fj1MxlZcXnrHpf_TCUvS007",
+              "ÇOK YAKINDA",
+              "https://us.123rf.com/450wm/vladwel/vladwel1805/vladwel180500030/101657415-writer-writing-on-computer-paper-sheet-vector-illustration-flat-cartoon-person-editor-write-electron.jpg?ver=6",
               54,
             ),
           ],
@@ -262,7 +231,7 @@ class _ExploreHorizontalViewState extends State<ExploreHorizontalView> {
       String imageUrl, int cardActiveUser) {
     return GestureDetector(
       onTap: () {
-        // Navigate to detail page
+        Navigator.pushNamed(context, AppRouteGenerator.APP_ROUTE_DETAIL);
       },
       child: Container(
         width: 300,

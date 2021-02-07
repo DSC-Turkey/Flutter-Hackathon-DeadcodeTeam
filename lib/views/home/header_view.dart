@@ -51,11 +51,13 @@ class HeaderView extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            width: size.width * 0.32,
-            child: SvgPicture.asset(
-              'assets/images/svg/kid_illustration.svg',
-              fit: BoxFit.fitWidth,
+          Expanded(
+            child: Container(
+              width: size.width * 0.32,
+              child: SvgPicture.asset(
+                'assets/images/svg/kid_illustration.svg',
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
         ],

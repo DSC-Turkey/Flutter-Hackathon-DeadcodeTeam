@@ -27,13 +27,15 @@ dependencies:
   firebase_auth: ^0.20.0+1
   firebase_core: ^0.7.0
   firebase_database: ^6.0.0
-  flutter_svg: ^0.19.2+1
+  flutter_svg: any
   get: ^3.24.0
   google_fonts: ^1.1.2
   google_nav_bar: ^4.0.2
   http: ^0.12.2
   shared_preferences: ^0.5.12+4
   smooth_page_indicator: ^0.2.0
+  cloud_firestore: ^0.16.0
+  youtube_player_flutter: ^7.0.0+3
 
 dev_dependencies:
   flutter_test:
