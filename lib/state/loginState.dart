@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:eogretmen/state/detailsState.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -8,7 +10,8 @@ import 'package:http/http.dart' as http;
 class LoginState extends GetxController {
   bool userLogin = false;
   bool basildimi = false;
-  login(email, passwordd) {
+  login(email, passwordd) async {
+    final DetailState c = Get.put(DetailState());
     setBasildimi(true);
     var databaseReference = FirebaseDatabase.instance.reference();
     databaseReference
@@ -16,13 +19,19 @@ class LoginState extends GetxController {
         .orderByChild("email")
         .equalTo(email)
         .once()
-        .then((value) {
+        .then((value) async {
       if (value != null) {
-        print(value.value[1]['password']);
-        if (value.value[1]['password'] == passwordd) {
+        setBasildimi(false);
+        var password;
+
+        value.value.forEach((k, v) => {password = v['password']});
+
+        if (password == passwordd) {
           setBasildimi(false);
+
+          await c.detaildata();
+
           userLogin = true;
-          update();
         } else {
           setBasildimi(false);
           Get.snackbar("Hata", "Şifreniz yanlış");

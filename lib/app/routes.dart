@@ -1,3 +1,4 @@
+import 'package:eogretmen/views/detail.dart';
 import 'package:eogretmen/views/signin.dart';
 import 'package:eogretmen/views/signup.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ class AppRouteGenerator {
   static const String APP_ROUTE_LOGIN = "/SignIn";
   static const String APP_ROUTE_SIGNUP = "/SignUp";
   static const String APP_ROUTE_HOME = "/Home";
+  static const String APP_ROUTE_DETAIL = "/Details";
+  static const String APP_ROUTE_PROFILE = "/Details";
 
   Route getAppRoutes(RouteSettings routeSettings) {
     print(routeSettings.name);
@@ -31,6 +34,13 @@ class AppRouteGenerator {
           fullscreenDialog: true,
           settings: routeSettings,
           builder: (BuildContext context) => Register(),
+        );
+
+      case APP_ROUTE_DETAIL:
+        return MaterialPageRoute<void>(
+          fullscreenDialog: true,
+          settings: routeSettings,
+          builder: (BuildContext context) => Details(),
         );
 
       // case APP_ROUTE_HOME:

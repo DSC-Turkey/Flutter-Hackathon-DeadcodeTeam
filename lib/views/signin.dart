@@ -87,7 +87,8 @@ class Sign extends StatelessWidget {
             RaisedButton(
               padding: EdgeInsets.symmetric(
                   horizontal: Get.width * 0.2, vertical: Get.height * 0.02),
-              onPressed: () => signInButton(txtUserName.text, txtPassword.text),
+              onPressed: () =>
+                  signInButton(txtUserName.text, txtPassword.text, context),
               child: c.basildimi == false
                   ? Text('GİRİŞ', style: GoogleFonts.montserrat(fontSize: 23))
                   : CircularProgressIndicator(),
@@ -121,10 +122,11 @@ class Sign extends StatelessWidget {
         )));
   }
 
-  signInButton(email, passwordd) {
+  signInButton(email, passwordd, context) {
     final LoginState c = Get.find();
     if (c.basildimi == false) {
       c.login(email, passwordd);
+      if (c.userLogin == true) {}
     }
   }
 }
