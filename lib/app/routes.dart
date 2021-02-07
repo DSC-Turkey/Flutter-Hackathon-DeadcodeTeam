@@ -1,4 +1,8 @@
+import 'package:eogretmen/views/detail.dart';
+import 'package:eogretmen/views/signin.dart';
+import 'package:eogretmen/views/signup.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:eogretmen/widgets/main_app_widget.dart';
 import 'package:eogretmen/views/search/search_view.dart';
 import 'package:eogretmen/views/splash/splash_view.dart';
@@ -10,7 +14,17 @@ class AppRouteGenerator {
   static const String APP_ROUTE_LOGIN = "/LogIn";
   static const String APP_ROUTE_REGISTER = "/Register";
   static const String APP_ROUTE_SEARCH = "/Search";
+=======
+import 'package:eogretmen/views/splash_view.dart';
+
+class AppRouteGenerator {
+  static const String APP_ROUTE_SPLASH = "/Splash";
+  static const String APP_ROUTE_LOGIN = "/SignIn";
+  static const String APP_ROUTE_SIGNUP = "/SignUp";
+>>>>>>> burkay
   static const String APP_ROUTE_HOME = "/Home";
+  static const String APP_ROUTE_DETAIL = "/Details";
+  static const String APP_ROUTE_PROFILE = "/Details";
 
   Route getAppRoutes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -25,7 +39,21 @@ class AppRouteGenerator {
         return MaterialPageRoute<void>(
           fullscreenDialog: true,
           settings: routeSettings,
-          builder: (BuildContext context) => LogIn(),
+          builder: (BuildContext context) => Sign(),
+        );
+
+      case APP_ROUTE_SIGNUP:
+        return MaterialPageRoute<void>(
+          fullscreenDialog: true,
+          settings: routeSettings,
+          builder: (BuildContext context) => Register(),
+        );
+
+      case APP_ROUTE_DETAIL:
+        return MaterialPageRoute<void>(
+          fullscreenDialog: true,
+          settings: routeSettings,
+          builder: (BuildContext context) => Details(),
         );
 
       case APP_ROUTE_REGISTER:
